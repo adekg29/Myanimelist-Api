@@ -1,0 +1,57 @@
+(function(global){
+    "use strict";
+    global.prefix = "#";
+    global.fillMal = function(meta, value){
+        return global(global.prefix + meta).val(value);
+    }
+    global.modalMal = {
+        "Id_Metabox_": "image_url",
+        "Id_Metabox_": "title_japanese",
+        "Id_Metabox_": "title_english",
+        "Id_Metabox_": "episodes",
+        "Id_Metabox_": "aired_string",
+		"Id_Metabox_": "rating",
+        "Id_Metabox_": "duration",
+        "Id_Metabox_": "source",
+		"Id_Metabox_": "broadcast",
+    }
+    global.mal = function(id){
+        global("#meta_mal_api_button").attr("disabled", true).html("Please wait...");
+        global("#spinner").addClass("is-active");
+        global.ajax({
+            url: "https://api.jikan.moe/anime/" + id,
+            method: "GET",
+            dataType: "JSON",
+            beforeSend: function(){
+                global("button#content-html.wp-switch-editor.switch-html, button#meta_mal_background-html.wp-switch-editor.switch-html").click();
+            }
+        }).done(function(json){
+            global("#meta_mal_api_button").attr("disabled", false).html("Generate");
+            global("#spinner").removeClass("is-active");
+            if(typeof(json.error) !== "undefined"){
+                console.log("Error: " + json.error);
+                alert("Error: " + json.error);
+            }else{
+                alert("Ciee berhasil nich :* ");
+                global("textarea#content").val(json["synopsis"]);
+                global("input#title").val(json["title"]);
+				global("input#nama_metabox").val(json["title_japanese"]);
+				global("input#nama_metabox").val(json["title_english"]);
+				global("input#nama_metabox").val(json["episodes"]);
+                global("input#nama_metabox").val(json["aired_string"]);
+				global("input#nama_metabox").val(json["rating"]);
+				global("input#nama_metabox").val(json["duration"]);
+				global("input#nama_metabox").val(json["source"]);
+				global("input#nama_metabox").val(json["broadcast"]);
+                global.each(global.modalMal, function(key, value){
+                    global.fillMal(key, json[value]);
+                });
+                
+            }
+        });
+    }
+    global("#meta_mal_api_button").on("click", function(){
+        var input = global("#meta_mal_api_input").val();
+            global.mal(input);
+    });
+})(jQuery);
