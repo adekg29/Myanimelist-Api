@@ -6,14 +6,19 @@
     }
     global.modalMal = {
         "Id_Metabox_": "image_url",
-        "Id_Metabox_": "title_japanese",
         "Id_Metabox_": "title_english",
+        "Id_Metabox_": "title_synonyms",
+        "Id_Metabox_": "title_japanese",
         "Id_Metabox_": "episodes",
         "Id_Metabox_": "aired_string",
-		"Id_Metabox_": "rating",
-        "Id_Metabox_": "duration",
+        "Id_Metabox_": "broadcast",
         "Id_Metabox_": "source",
-		"Id_Metabox_": "broadcast",
+        "Id_Metabox_": "duration",
+        "Id_Metabox_": "rating",
+        "Id_Metabox_": "rank",
+        "Id_Metabox_": "popularity",
+        "Id_Metabox_": "members",
+        "Id_Metabox_": "favorites",
     }
     global.mal = function(id){
         global("#meta_mal_api_button").attr("disabled", true).html("Please wait...");
@@ -35,14 +40,19 @@
                 alert("Ciee berhasil nich :* ");
                 global("textarea#content").val(json["synopsis"]);
                 global("input#title").val(json["title"]);
-				global("input#nama_metabox").val(json["title_japanese"]);
-				global("input#nama_metabox").val(json["title_english"]);
-				global("input#nama_metabox").val(json["episodes"]);
-                global("input#nama_metabox").val(json["aired_string"]);
-				global("input#nama_metabox").val(json["rating"]);
-				global("input#nama_metabox").val(json["duration"]);
-				global("input#nama_metabox").val(json["source"]);
-				global("input#nama_metabox").val(json["broadcast"]);
+                global("input#Id_Metabox_").val(json["title_english"]);
+                global("input#Id_Metabox_").val(json["title_synonyms"]);
+                global("input#Id_Metabox_").val(json["title_japanese"]);
+                global("input#Id_Metabox_").val(json["episodes"]);
+                global("input#Id_Metabox_").val(json["aired_string"]);
+                global("input#Id_Metabox_").val(json["broadcast"]);
+                global("input#Id_Metabox_").val(json["source"]);
+                global("input#Id_Metabox_").val(json["duration"]);
+                global("input#Id_Metabox_").val(json["rating"]);
+                global("input#Id_Metabox_").val(json["rank"]);
+                global("input#Id_Metabox_").val(json["popularity"]);
+                global("input#Id_Metabox_").val(json["members"]);
+                global("input#Id_Metabox_").val(json["favorites"]);
                 global.each(global.modalMal, function(key, value){
                     global.fillMal(key, json[value]);
                 });
