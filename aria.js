@@ -17,9 +17,9 @@ $('#meta_mal_api_button').click(function () {
       $('#snap_skor').val(res.score);
       $('#ak_rating').val(res.rating);
       $('#new-tag-type').val(res.type);
-	  $('#new-tag-genre').val(res.genres);
+      $('#new-tag-genre').val(res.genres);
       $('#new-tag-studio').val(res.studios);
-	  $('#new-tag-season').val(res.premiered);
+      $('#new-tag-season').val(res.premiered);
       $('#new-tag-status').val(res.status.replace("Currently Airing", "Ongoing"));
       $('#snap_trailer').val(res.trailer_url.replace("?enablejsapi=1&wmode=opaque&autoplay=1", ""));
       $('#ak_producers').val(res.producers.map(item => {
