@@ -1,9 +1,8 @@
-# Myanimelist-Api-Jikan-
+# Myanimelist-Api
 
-Jikan Buatan dari Codepelajar
+Jikan.js Buatan dari Codepelajar
 
-Aria Buatan dari Temen ane sendiri yang namanya Aria. Tutorialnya sama dengan codepelajar
-
+Aria.js Buatan dari Temen saya sendiri yang namanya Aria. Tutorialnya sama dengan codepelajar
 Bedanya yang ini lebih ringkas
 
 Tutorial
