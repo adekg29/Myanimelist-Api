@@ -3,39 +3,37 @@ let $ = jQuery;
 $('#meta_mal_api_button').click(function () {
   let id = $('#meta_mal_api_input').val();
   $('#meta_mal_api_input').val('Processing').attr("disabled", 'disabled');
-  fetch('https://api.jikan.moe/v3/anime/' + id)
+  fetch('https://api.jikan.moe/v4/anime/' + id)
     .then(res => res.json())
     .then(res => {
       $('#title').val(res.title);
-      $('#ak_synonyms').val(res.title_synonyms.join(", "));
-      $('#ak_english').val(res.title_english);
-      $('#snap_japanese').val(res.title_japanese);
-      $('#snap_eps').val(res.episodes);
-      $('#snap_duration').val(res.duration);
-      $('#snap_aired').val(res.aired.string);
-      $('#ak_source').val(res.source);
-      $('#snap_skor').val(res.score);
-      $('#ak_rating').val(res.rating);
-      $('#new-tag-type').val(res.type);
-      $('#new-tag-genre').val(res.genres);
-      $('#new-tag-studio').val(res.studios);
-      $('#new-tag-season').val(res.premiered);
-      $('#new-tag-status').val(res.status.replace("Currently Airing", "Ongoing"));
-      $('#snap_trailer').val(res.trailer_url.replace("?enablejsapi=1&wmode=opaque&autoplay=1", ""));
-      $('#ak_producers').val(res.producers.map(item => {
+      $('#youmetabox_synonyms').val(res.data.title_synonyms.join(", "));
+      $('#youmetabox_english').val(res.data.title_english);
+      $('#youmetabox_japanese').val(res.data.title_japanese);
+      $('#youmetabox_episodes').val(res.data.episodes);
+      $('#youmetabox_duration').val(res.data.duration);
+      $('#youmetabox_aired').val(res.data.aired.string);
+      $('#youmetabox_source').val(res.data.source);
+      $('#youmetabox_score').val(res.data.score);
+      $('#youmetabox_rating').val(res.data.rating);
+      $('#new-tag-type').val(res.data.type);
+      $('#new-tag-season').val(res.data.season);
+      $('#new-tag-status').val(res.data.status.replace("Currently Airing", "Ongoing"));
+      $('#youmetabox_trailer').val(res.data.trailer_url.replace("?enablejsapi=1&wmode=opaque&autoplay=1", ""));
+      $('#youmetabox_producers').val(res.data.producers.map(item => {
         return item.name
       }).join(", "));
-      $('#ak_licensors').val(res.licensors.map(item => {
+      $('#youmetabox_licensors').val(res.data.licensors.map(item => {
         return item.name
       }).join(", "));
-      $('#new-tag-genre').val(res.genres.map(item => {
+      $('#new-tag-genres').val(res.data.genres.replace(item => {
         return item.name
       }).join(","));
-      $('#new-tag-studio').val(res.studios.map(item => {
+      $('#new-tag-studios').val(res.data.studios.map(item => {
         return item.name
       }).join(","));
       var synopsis = "";
-      var output = res.synopsis.replace(/\n/g, "<br />");
+      var output = res.data.synopsis.replace(/\n/g, "<br />");
       synopsis += "" + output + "";
       if (typeof tinyMCE != "undefined") {
         var editor_id = wpActiveEditor;
