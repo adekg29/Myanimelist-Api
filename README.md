@@ -13,6 +13,4 @@ Tutorial
 https://www.codepelajar.com/2018/12/cara-pasang-script-grabber-myanimelist.html
 
 Support me 
-https://moelogger.com/
-https://moebatch.com/
 https://adekg.com/
